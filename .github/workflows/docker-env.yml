@@ -14,4 +14,4 @@ jobs:
 
     steps:
     - name: List all environment
-      run: env
+      run: env 
