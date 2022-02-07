@@ -23,3 +23,9 @@ jobs:
 
       - name: 'Use gcloud CLI'
         run: 'gcloud info'
+        
+      - name: 'Get snpe zip file'
+        run: "gsutil cp gs://snpe-libs-for-docker/snpe-1.41.0.zip ."
+        
+      - name: 'run ls'
+        run: "ls -al"
