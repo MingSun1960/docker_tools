@@ -1,6 +1,7 @@
 ame: SNPE Android SDK NDK build test
 on:
-  workflow_de
+  workflow_dispatch
+  
 jobs:
   Build SNPE Android SDK NDK Docker Image:
     runs-on: ubuntu-latest
