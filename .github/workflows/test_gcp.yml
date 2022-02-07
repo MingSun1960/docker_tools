@@ -16,4 +16,4 @@ jobs:
       - name: Set GCS Security Token
         uses: 'google-github-actions/auth@v0'
         with:
-          credentials_json: '${{ secrets.GCS_SNPE_LIBS_READ }}'
+          credentials_json: '${{ TEST.secrets.GCS_SNPE_LIBS_READ }}'
