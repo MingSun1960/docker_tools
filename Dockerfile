@@ -117,7 +117,7 @@ ENV ANDROID_EMULATOR_USE_SYSTEM_LIBS=1
 
 #Add SNPE SDK folder.  Change the version name here
 COPY snpe-1.41.0.zip ./snp1-1.41.0.zip
-RUN unzip -X snpe-1.41.0.zip 
+RUN unzip -X ./snpe-1.41.0.zip 
 RUN rm snpe-1.41.0.zip
 #RUN /bin/bash -c 'source /home/$USER/snpe-1.41.0.2173/bin/envsetup.sh -t /usr/local/lib/python3.6/dist-packages/'
 
