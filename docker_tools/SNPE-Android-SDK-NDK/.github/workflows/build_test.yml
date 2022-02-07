@@ -1,4 +1,4 @@
-ame: SNPE Android SDK NDK build test
+name: SNPE Android SDK NDK build test
 on:
   workflow_dispatch
   
