@@ -18,7 +18,9 @@ on:
 
 # A workflow run is made up of one or more jobs that can run sequentially or in parallel
 jobs:
-     
+  build:
+  runs-on: ubuntu-latest
+  
   steps:
     - name: Checkout Repository
       uses: actions/checkout@v2
@@ -26,5 +28,5 @@ jobs:
     - name: Set GCS Security Token
       uses: 'google-github-actions/auth@v0'
       with:
-        credentials_json: '${{ secrets.GS_ZETTA_STORAGE_TOKEN }}'
+        credentials_json: '${{ secrets.SNPE_LIBS_FOR_DOCKER }}'
 
