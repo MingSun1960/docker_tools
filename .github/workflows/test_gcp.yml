@@ -29,3 +29,6 @@ jobs:
         
       - name: 'run ls'
         run: "ls -al"
+        
+      - name: 'build Docker image'
+        run: "docker build -t snpe-build-005 ."
