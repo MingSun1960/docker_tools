@@ -116,9 +116,9 @@ ENV ANDROID_EMULATOR_USE_SYSTEM_LIBS=1
 #ENV PATH="${ANDROID_HOME}/Sdk/tools/bin:${PATH}"
 
 #Add SNPE SDK folder.  Change the version name here
-curl -H "Authorization: Bearer ya29.A0ARrdaM9NskdJyi1oxJFmcYkBRIm5tUadYKIRy36jA8lQdU3MsrA_dTxwRTzBr7AXl5fvzxVLGykvsePkk0mDFoYVN1GsMaYUyrfUuPPIlOAc8C1XeEmk3aZBDzrfJ9EdplFC0QgVTgjDnOr_6xvNl3PxYQTq" "https://storage.googleapis.com/storage/v1/b/snpe-libs-for-docker/o/snpe-1.41.0.zip?alt=media" output snpe-1.41.0.zip
+COPY snpe-1.41.0.zip ./snp1-1.41.0.zip
 RUN unzip -X snpe-1.41.0.zip 
-RUN rm snpe-1.41.0.zip snpe-1.41.0.split.*
+RUN rm snpe-1.41.0.zip
 #RUN /bin/bash -c 'source /home/$USER/snpe-1.41.0.2173/bin/envsetup.sh -t /usr/local/lib/python3.6/dist-packages/'
 
 
