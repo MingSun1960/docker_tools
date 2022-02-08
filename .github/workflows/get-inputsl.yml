@@ -8,11 +8,16 @@ on:
   workflow_dispatch:
     # Inputs the workflow accepts.
     inputs:
-      name:
+      snpeversion:
         # Friendly description to be shown in the UI instead of 'name'
-        description: 'Person to greet'
+        description: '(1) SNPE-1.41.0 (2)SNPE-1.53.0'
         # Default value if no value is explicitly provided
-        default: 'World'
+        default: '1'
+        # Input has to be provided for the workflow to run
+        required: true
+      imagetag:
+        # Friendly description to be shown in the UI instead of 'name'
+        description: 'Target Docker image tag'
         # Input has to be provided for the workflow to run
         required: true
 
@@ -26,5 +31,9 @@ jobs:
     # Steps represent a sequence of tasks that will be executed as part of the job
     steps:
     # Runs a single command using the runners shell
-    - name: Send greeting
-      run: echo "Hello ${{ github.event.inputs.name }}"
+    - name: Show SNPE lib version selection
+      run: echo "Hello ${{ github.event.inputs.snpeversion }}"
+      
+    - name: Show docker image tag
+      run: echo "Docker Image tag: ${{ github.event.inputs.imagetag }}"
+      
