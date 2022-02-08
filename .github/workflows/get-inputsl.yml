@@ -35,5 +35,5 @@ jobs:
       run: echo "Hello ${{ github.event.inputs.snpeversion }}"
       
     - name: Show docker image tag
-      run: echo "Docker Image tag: ${{ github.event.inputs.imagetag }}"
+      run: echo "Docker Image tag':' ${{ github.event.inputs.imagetag }}"
       
