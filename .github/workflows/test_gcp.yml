@@ -25,12 +25,11 @@ jobs:
       snpever_string: snpe_1.41.0.zip
       
     steps:
-      - name: process snpe zip filename
+      - name: Checkout Repository
+        uses: actions/checkout@v2
         if: ${{ github.event.inputs.snpeversion == 2}}
         env:
           snpever_string: snpe-1.53.0.zip
-      - name: Checkout Repository
-        uses: actions/checkout@v2
 
       - name: Set GCS Security Token
         uses: 'google-github-actions/auth@v0'
