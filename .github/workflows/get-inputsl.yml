@@ -32,7 +32,7 @@ jobs:
     steps:
     # Runs a single command using the runners shell
     - name: Show SNPE lib version selection
-      if: ${{ $snpeversion == 1}}
+      if: ${{ snpeversion == 1}}
       env: 
         snpever_string: snpe-1.41.0.zip
       run: echo "Hello ${{ $snpever_string }}"
