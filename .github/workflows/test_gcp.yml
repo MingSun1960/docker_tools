@@ -30,5 +30,8 @@ jobs:
       - name: 'run ls'
         run: "ls -al"
         
-      - name: 'build Docker image'
-        run: "docker build -t snpe-build-005 ."
+      #- name: 'build Docker image'
+      #  run: "docker build -t snpe-build-005 ."
+        
+      - name: 'Configure docker to use the gcloud command-line tool as a credential helper'
+        run: "gcloud auth configure-docker -q"
