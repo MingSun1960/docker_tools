@@ -32,7 +32,10 @@ jobs:
     steps:
     # Runs a single command using the runners shell
     - name: Show SNPE lib version selection
-      run: echo "Hello ${{ github.event.inputs.snpeversion }}"
+      if: ${{ $snpeversion == 1}}
+      env: 
+        snpever_string: snpe-1.41.0.zip
+      run: echo "Hello ${{ $snpever_string }}"
       
     - name: Show docker image tag
       run: echo "Docker Image tag':' ${{ github.event.inputs.imagetag }}"
