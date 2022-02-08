@@ -30,8 +30,14 @@ jobs:
       - name: 'run ls'
         run: "ls -al"
         
-      #- name: 'build Docker image'
-      #  run: "docker build -t snpe-build-005 ."
+      - name: 'build Docker image'
+        run: "docker build -t snpe-build-006 ."
         
       - name: 'Configure docker to use the gcloud command-line tool as a credential helper'
         run: "gcloud auth configure-docker -q"
+      
+      - name: 'tag image'
+        run: "docker tag snpe-build-006 gcr.io/emc-et-gcr-d/snpe-build-006:snpe141build006"
+        
+      - name: 'push image to GCR'
+        run: "docker push gcr.io/emc-et-gcr.d/snpe-build-006:snpe141build006"
