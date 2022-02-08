@@ -37,7 +37,7 @@ jobs:
         run: "gcloud auth configure-docker -q"
       
       - name: 'tag image'
-        run: "docker tag snpe-build-006 gcr.io/emc-et-gcr-d/snpe-build-006:snpe141build006"
+        run: "docker tag snpe-build-006 gcr.io/${GCLOUD_PROJECT}/snpe-build-006:snpe141build006"
         
       - name: 'push image to GCR'
-        run: "docker push gcr.io/emc-et-gcr.d/snpe-build-006:snpe141build006"
+        run: "docker push gcr.io/${GCLOUD_PROJECT}/snpe-build-006:snpe141build006"
