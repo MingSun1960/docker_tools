@@ -1,15 +1,34 @@
 name: Test GCP
-
 on:
-  workflow_dispatch
+  workflow_dispatch:
+    # Inputs the workflow accepts
+    inputs:
+      snpeversion:
+        # Friendly description to be shown in the UI instead of 'name'
+        description: 'Select (1) SNPE-1.41.0, or (2)SNPE-1.53.0'
+        # Default value if no value is explicitly provided
+        default: '1'
+        # Input has to be provided for the workflow to run
+        required: true
+      imagetag:
+        # Friendly description to be shown in the UI instead of 'name'
+        description: 'Target Docker image tag'
+        # Input has to be provided for the workflow to run
+        required: true
   
 jobs:
 
   build:
 
     runs-on: ubuntu-latest
-
+    env:
+      snpever_string: snpe_1.41.0.zip
+      
     steps:
+      - name: process snpe zip filename
+        if: ${{ github.event.inputs.snpeversion == 2}}
+        env:
+          snpever_string: snpe-1.53.0.zip
       - name: Checkout Repository
         uses: actions/checkout@v2
 
@@ -25,19 +44,19 @@ jobs:
         run: 'gcloud info'
         
       - name: 'Get snpe zip file'
-        run: "gsutil cp gs://snpe-libs-for-docker/snpe-1.41.0.zip ."
+        run: "gsutil cp gs://snpe-libs-for-docker/${{env.snpever_strign}} snpe-lib.zip"
         
       - name: 'run ls'
         run: "ls -al"
         
       - name: 'build Docker image'
-        run: "docker build -t snpe-build-006 ."
+        run: "docker build -t snpe-build ."
         
       - name: 'Configure docker to use the gcloud command-line tool as a credential helper'
         run: "gcloud auth configure-docker -q"
       
       - name: 'tag image'
-        run: "docker tag snpe-build-006 gcr.io/${GCLOUD_PROJECT}/snpe-build-006:snpe141build006"
+        run: "docker tag snpe-build gcr.io/${GCLOUD_PROJECT}/snpe-build:${{ github.event.inputs.imagetag }}"
         
       - name: 'push image to GCR'
-        run: "docker push gcr.io/${GCLOUD_PROJECT}/snpe-build-006:snpe141build006"
+        run: "docker push gcr.io/${GCLOUD_PROJECT}/snpe-build:${{ github.event.inputs.imagetag }}"
