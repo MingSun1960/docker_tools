@@ -1,0 +1,36 @@
+This documnet describes how to build use this Docker image
+
+**********************************************************************************************************
+This Docker image is created to host Android Studio, Tensorflow 2.3 and SNPE SDk V1.41.  This is meant to provide a consistent build environment for validate and benchmark Android apps using SNPE SDK.
+**********************************************************************************************************
+
+***********************
+Prerequisition:
+***********************
+System with Ubuntu 18.04 or 20.04, with Docker 20 installed (https://docs.docker.com/engine/install/ubuntu/)
+
+***********************
+Build the Docker image
+***********************
+1. Unzip the android-studio-dockerfile.zip into a working folder.  There will be a Dockerfile, snpe1.41.0zip, two folders and two shell scripts.
+2. Open a terminal and navigate to the working folder
+3. Run "./build.sh" from the command prompt.  The build process will begin.  An additional folder "studio-data" will be created to hold more files generated on the fly.
+4. After the whole image is created successfully, use "docker images" command to show snpe-build-002 image in the local repository.
+
+***********************
+Run the Docker image
+***********************
+1. From the working folder prompt, run "HOST_DISPLAY=1 ./run.sh".  This will channel the UI of Android Studio to use the X.11 server of the host linux machine.
+2. Follow the prompt of the UI to compleate the initialization and set up of the Android Studio.
+3. Open a projec in Android Studio IDE to build
+4. From "Help" on teh top menu, click "Find Action" and start "SDK Manager".  Go to "SDK Tools" tab and check on the NDK (Side by side) to complete the installation.
+5. Follow the instructiion of SNPE SDK setup link in "Refreence" to proceed with more set up for TensorFlow and SNPE.  We must open a terminal within the docker container which is running the docker image.  THis can be done by using "View->Tool Window->Terminal (Alt+F12)" to open a terminal for console I/O with the Ubuntu 18.04.
+6. Follow the process described in the SNPE SDK to complet the setup for TensorFlow.
+
+This image currently has TF 2.3 installed.  No other framework is installed.
+
+
+
+Reference:
+1. Snapdragon Neural Processing Engine SDK set up https://developer.qualcomm.com/docs/snpe/setup.html
+
