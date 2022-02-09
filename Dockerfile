@@ -120,7 +120,7 @@ COPY snpe-lib.zip ./snpe-lib.zip
 RUN unzip -X  snpe-lib.zip
 RUN rm snpe-lib.zip
 #Rename to SNPE-LIB folder to avoid version specific folder name
-RUN ls -d snpe*/ | xargs -I '{}' mv {} SNPE-LIB
+#RUN ls -d snpe*/ | xargs -I '{}' mv {} SNPE-LIB
 #RUN /bin/bash -c 'source /home/$USER/SNPE-LIB/bin/envsetup.sh -t /usr/local/lib/python3.6/dist-packages/'
 
 
