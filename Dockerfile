@@ -117,7 +117,7 @@ ENV ANDROID_EMULATOR_USE_SYSTEM_LIBS=1
 
 #Add SNPE SDK folder.  Change the version name here
 COPY snpe-lib.zip ./snpe-lib.zip
-RUN unzip -X  snpe-lib.zip
+RUN unzip -X  ./snpe-lib.zip
 RUN rm snpe-lib.zip
 #Rename to SNPE-LIB folder to avoid version specific folder name
 #RUN ls -d snpe*/ | xargs -I '{}' mv {} SNPE-LIB
