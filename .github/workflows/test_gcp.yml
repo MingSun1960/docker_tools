@@ -38,9 +38,14 @@ jobs:
 
       - name: 'Use gcloud CLI'
         run: 'gcloud info'
-        if: ${{ github.event.inputs.snpeversion == 2}}
+      
+      - name: 'Set snpeversion to env'
         env:
           snpever_string: snpe-1.53.0.zip
+        if: ${{ github.event.inputs.snpeversion == 2}}
+        
+      - name: 'Change working folder'
+        run: "cd SNPE-Android-SDK-NDK"
         
       - name: 'Get snpe zip file'
         run: "gsutil cp gs://snpe-libs-for-docker/${{env.snpever_string}} snpe-lib.zip"
@@ -49,7 +54,7 @@ jobs:
         run: "ls -al"
         
       - name: 'build Docker image'
-        run: "cd SNPE-Android-SDK-NDK && docker build -t snpe-build ."
+        run: "docker build -t snpe-build ."
         
       - name: 'Configure docker to use the gcloud command-line tool as a credential helper'
         run: "gcloud auth configure-docker -q"
