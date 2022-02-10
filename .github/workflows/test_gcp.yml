@@ -39,7 +39,6 @@ jobs:
       - name: 'Use gcloud CLI'
         run: 'gcloud info'
       
-      - name: 'Set snpeversion to env'
         env:
           snpever_string: snpe-1.53.0.zip
         if: ${{ github.event.inputs.snpeversion == 2}}
