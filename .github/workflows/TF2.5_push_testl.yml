@@ -28,6 +28,6 @@ jobs:
 
        
       - name: 'build Docker image'
-        run: "cd TensorFlow2.5 && docker build -t TF2.5-build ."
+        run: "cd TensorFlow2.5 && docker build -t tf2.5-build ."
         
  
