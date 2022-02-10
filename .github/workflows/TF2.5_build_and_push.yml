@@ -31,13 +31,13 @@ jobs:
         run: 'gcloud info'
 
       - name: 'build Docker image'
-        run: "cd TensorFlow2.5 && docker build -t TF2.5_build ."
+        run: "cd TensorFlow2.5 && docker build -t TF2.5-build ."
         
       - name: 'Configure docker to use the gcloud command-line tool as a credential helper'
         run: "gcloud auth configure-docker -q"
       
       - name: 'tag image'
-        run: "docker tag TF2.5_build gcr.io/${GCLOUD_PROJECT}/TF2.5_build:${{ github.event.inputs.imagetag }}"
+        run: "docker tag TF2.5-build gcr.io/${GCLOUD_PROJECT}/TF2.5-build:${{ github.event.inputs.imagetag }}"
         
       - name: 'push image to GCR'
-        run: "docker push gcr.io/${GCLOUD_PROJECT}/TF2.5_build:${{ github.event.inputs.imagetag }}"
+        run: "docker push gcr.io/${GCLOUD_PROJECT}/TF2.5-build:${{ github.event.inputs.imagetag }}"
