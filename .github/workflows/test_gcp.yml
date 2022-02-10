@@ -27,6 +27,8 @@ jobs:
     steps:
       - name: Checkout Repository
         uses: actions/checkout@v2
+        
+      - name: Decide SNPE lib version
         if: ${{ github.event.inputs.snpeversion == 2}}
         env:
           snpever_string: snpe-1.53.0.zip
