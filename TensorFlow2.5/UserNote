@@ -1,0 +1,88 @@
+#####################################################################################################
+# To build the docker image tensorflow2.5-build-002 from Dockerfile located in the current folder
+#####################################################################################################
+$docker build -t tensorflow2.5-build-002 .
+
+
+#####################################################################################################
+# Run tensorflow2.5-build-002 image as a docker container named <contanername>, expose port 8888 for 
+# jupyter notebook
+#####################################################################################################
+$docker run --gpus all -p 8888 --name <containername> tensorflow2.5-build-002 &
+
+#####################################################################################################
+# Inspect the running status of container and find out port forwarding information
+#####################################################################################################
+$docker ps
+
+CONTAINER ID   IMAGE                     COMMAND                    CREATED       STATUS       PORTS                                         NAMES
+9da886eb3d55   tensorflow2.5-build-002   "jupyter notebook --..."   2 hours ago   Up 2 hours   0.0.0.0:49157->8888/tcp, :::49157->8888/tcp   <containername>
+
+
+#####################################################################################################
+# Attach to the running Docker container <containername>
+#####################################################################################################
+$docker exec -it <containername> bash
+ett@9da886eb3d55:~$
+
+
+#####################################################################################################
+# Check the tensorflow lib information and the CPU/GPU usage
+#####################################################################################################
+ett@9da886eb3d55:~$python3 -c 'from tensorflow.python.client import device_lib as dl; print(dl.list_local_devices())'
+
+2021-06-16 12:47:34.051015: I tensorflow/stream_executor/platform/default/dso_loader.cc:53] Successfully opened dynamic library libcudart.so.11.0
+2021-06-16 12:47:35.004855: I tensorflow/core/platform/cpu_feature_guard.cc:142] This TensorFlow binary is optimized with oneAPI Deep Neural Network Library (oneDNN) to use the following CPU instructions in performance-critical operations:  AVX2 FMA
+To enable them in other operations, rebuild TensorFlow with the appropriate compiler flags.
+2021-06-16 12:47:35.007545: I tensorflow/stream_executor/platform/default/dso_loader.cc:53] Successfully opened dynamic library libcuda.so.1
+2021-06-16 12:47:35.051136: I tensorflow/stream_executor/cuda/cuda_gpu_executor.cc:937] successful NUMA node read from SysFS had negative value (-1), but there must be at least one NUMA node, so returning NUMA node zero
+2021-06-16 12:47:35.051624: I tensorflow/core/common_runtime/gpu/gpu_device.cc:1733] Found device 0 with properties: 
+pciBusID: 0000:41:00.0 name: NVIDIA GeForce RTX 2070 computeCapability: 7.5
+coreClock: 1.62GHz coreCount: 36 deviceMemorySize: 7.79GiB deviceMemoryBandwidth: 417.29GiB/s
+2021-06-16 12:47:35.051652: I tensorflow/stream_executor/platform/default/dso_loader.cc:53] Successfully opened dynamic library libcudart.so.11.0
+2021-06-16 12:47:35.054875: I tensorflow/stream_executor/platform/default/dso_loader.cc:53] Successfully opened dynamic library libcublas.so.11
+2021-06-16 12:47:35.054919: I tensorflow/stream_executor/platform/default/dso_loader.cc:53] Successfully opened dynamic library libcublasLt.so.11
+2021-06-16 12:47:35.055699: I tensorflow/stream_executor/platform/default/dso_loader.cc:53] Successfully opened dynamic library libcufft.so.10
+2021-06-16 12:47:35.055905: I tensorflow/stream_executor/platform/default/dso_loader.cc:53] Successfully opened dynamic library libcurand.so.10
+2021-06-16 12:47:35.056313: I tensorflow/stream_executor/platform/default/dso_loader.cc:53] Successfully opened dynamic library libcusolver.so.11
+2021-06-16 12:47:35.056999: I tensorflow/stream_executor/platform/default/dso_loader.cc:53] Successfully opened dynamic library libcusparse.so.11
+2021-06-16 12:47:35.057114: I tensorflow/stream_executor/platform/default/dso_loader.cc:53] Successfully opened dynamic library libcudnn.so.8
+2021-06-16 12:47:35.057250: I tensorflow/stream_executor/cuda/cuda_gpu_executor.cc:937] successful NUMA node read from SysFS had negative value (-1), but there must be at least one NUMA node, so returning NUMA node zero
+2021-06-16 12:47:35.057811: I tensorflow/stream_executor/cuda/cuda_gpu_executor.cc:937] successful NUMA node read from SysFS had negative value (-1), but there must be at least one NUMA node, so returning NUMA node zero
+2021-06-16 12:47:35.058257: I tensorflow/core/common_runtime/gpu/gpu_device.cc:1871] Adding visible gpu devices: 0
+2021-06-16 12:47:35.058299: I tensorflow/stream_executor/platform/default/dso_loader.cc:53] Successfully opened dynamic library libcudart.so.11.0
+2021-06-16 12:47:35.467252: I tensorflow/core/common_runtime/gpu/gpu_device.cc:1258] Device interconnect StreamExecutor with strength 1 edge matrix:
+2021-06-16 12:47:35.467306: I tensorflow/core/common_runtime/gpu/gpu_device.cc:1264]      0 
+2021-06-16 12:47:35.467315: I tensorflow/core/common_runtime/gpu/gpu_device.cc:1277] 0:   N 
+2021-06-16 12:47:35.467574: I tensorflow/stream_executor/cuda/cuda_gpu_executor.cc:937] successful NUMA node read from SysFS had negative value (-1), but there must be at least one NUMA node, so returning NUMA node zero
+2021-06-16 12:47:35.468112: I tensorflow/stream_executor/cuda/cuda_gpu_executor.cc:937] successful NUMA node read from SysFS had negative value (-1), but there must be at least one NUMA node, so returning NUMA node zero
+2021-06-16 12:47:35.468600: I tensorflow/stream_executor/cuda/cuda_gpu_executor.cc:937] successful NUMA node read from SysFS had negative value (-1), but there must be at least one NUMA node, so returning NUMA node zero
+2021-06-16 12:47:35.469061: I tensorflow/core/common_runtime/gpu/gpu_device.cc:1418] Created TensorFlow device (/device:GPU:0 with 6485 MB memory) -> physical GPU (device: 0, name: NVIDIA GeForce RTX 2070, pci bus id: 0000:41:00.0, compute capability: 7.5)
+[name: "/device:CPU:0"
+device_type: "CPU"
+memory_limit: 268435456
+locality {
+}
+incarnation: 7435251158344010064
+, name: "/device:GPU:0"
+device_type: "GPU"
+memory_limit: 6800932864
+locality {
+  bus_id: 1
+  links {
+  }
+}
+incarnation: 4611790122205286650
+physical_device_desc: "device: 0, name: NVIDIA GeForce RTX 2070, pci bus id: 0000:41:00.0, compute capability: 7.5"
+]
+
+#####################################################################################################
+# Using web browser to access the jupyternote on the workstation -
+#	Enter "<IP of workstation>:<port>" in the url of the web brower, where 
+#		<IP of workstation> is the IP address of the workstation, or "localhost" if running from the workstation via VNC.
+#		<port> is the TCP port forwarding address of 8888 reported by docker ps
+#
+#	Enter 'root' to login
+#####################################################################################################
+
+
