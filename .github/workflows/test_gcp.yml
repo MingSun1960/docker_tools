@@ -5,9 +5,9 @@ on:
     inputs:
       snpeversion:
         # Friendly description to be shown in the UI instead of 'name'
-        description: 'Select (1) SNPE-1.41.0, or (2)SNPE-1.53.0'
+        description: 'SNPE Lib name (e.g. snpe-1.41.0.zip)'
         # Default value if no value is explicitly provided
-        default: '1'
+        default: 'snpe-1.41.0.zip'
         # Input has to be provided for the workflow to run
         required: true
       imagetag:
@@ -23,19 +23,6 @@ jobs:
     runs-on: ubuntu-latest
       
     steps:
-
-      - name: Set to use SNPE 1.41
-        if: ${{ github.event.inputs.snpeversion == 1}}
-        env: 
-          snpever_string: snpe-1.41.0.zip
-        run: echo "SNPE Lib -  ${{ env.snpever_string }}"
-
-      - name: Set to use SNPE 1.53
-        if: ${{ github.event.inputs.snpeversion == 2}}
-        env: 
-          snpever_string: snpe-1.53.0.zip
-        run: echo "SNPE Lib -  ${{ env.snpever_string }}"
-        
       - name: Checkout Repository
         uses: actions/checkout@v2
         
@@ -51,7 +38,7 @@ jobs:
         run: 'gcloud info'
 
       - name: 'Get snpe zip file'
-        run: "cd SNPE-Android-SDK-NDK && gsutil cp gs://snpe-libs-for-docker/${{env.snpever_string}} snpe-lib.zip"
+        run: "cd SNPE-Android-SDK-NDK && gsutil cp gs://snpe-libs-for-docker/${{github.event.inputs.snpeversion} snpe-lib.zip"
         
       - name: 'run ls'
         run: "cd SNPE-Android-SDK-NDK && ls -al"
