@@ -38,7 +38,7 @@ jobs:
         run: 'gcloud info'
 
       - name: 'Get snpe zip file'
-        run: "cd SNPE-Android-SDK-NDK && gsutil cp gs://snpe-libs-for-docker/${{github.event.inputs.snpeversion} snpe-lib.zip"
+        run: "cd SNPE-Android-SDK-NDK && gsutil cp gs://snpe-libs-for-docker/${{github.event.inputs.snpeversion}} snpe-lib.zip"
         
       - name: 'run ls'
         run: "cd SNPE-Android-SDK-NDK && ls -al"
