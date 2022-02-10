@@ -21,10 +21,21 @@ jobs:
   build:
 
     runs-on: ubuntu-latest
-    env:
-      snpever_string: snpe-1.41.0.zip
       
     steps:
+
+      - name: Set to use SNPE 1.41
+        if: ${{ github.event.inputs.snpeversion == 1}}
+        env: 
+          snpever_string: snpe-1.41.0.zip
+        run: echo "SNPE Lib -  ${{ env.snpever_string }}"
+
+      - name: Set to use SNPE 1.53
+        if: ${{ github.event.inputs.snpeversion == 2}}
+        env: 
+          snpever_string: snpe-1.53.0.zip
+        run: echo "SNPE Lib -  ${{ env.snpever_string }}"
+        
       - name: Checkout Repository
         uses: actions/checkout@v2
         
