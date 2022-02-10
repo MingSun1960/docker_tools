@@ -35,6 +35,8 @@ jobs:
       if: ${{ github.event.inputs.snpeversion == 1}}
       env: 
         snpever_string: snpe-1.41.0.zip
+        
+    - name: Echo version string
       run: echo "Hello ${{ env.snpever_string }}"
       
     - name: Show docker image tag
