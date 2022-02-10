@@ -49,7 +49,7 @@ jobs:
         run: "ls -al"
         
       - name: 'build Docker image'
-        run: "docker build -f SNPE-Android-SDK-NDK/Dockerfile -t snpe-build "
+        run: "cd SNPE-Android-SDK-NDK && docker build -t snpe-build ."
         
       - name: 'Configure docker to use the gcloud command-line tool as a credential helper'
         run: "gcloud auth configure-docker -q"
