@@ -3,7 +3,9 @@ name: SNPE related push test workflow
 on:
   push:
     paths:
-      - "SNPE-Android-SDK-NDK/*.*"
+      - "SNPE-Android-SDK-NDK/*"
+      - "SNPE-Android-SDK-NDK/provisioning/*"
+      - "SNPE-Android-SDK-NDK/utils/*"
   
 jobs:
 
