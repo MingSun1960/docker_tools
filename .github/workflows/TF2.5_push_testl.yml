@@ -1,0 +1,33 @@
+name: TF2.5 related push test workflow
+
+on:
+  push:
+    paths:
+      - "TensorFlow2.5/*"
+  
+jobs:
+
+  build:
+
+    runs-on: ubuntu-latest
+      
+    steps:
+      - name: Checkout Repository
+        uses: actions/checkout@v2
+        
+      - name: Set GCS Security Token
+        uses: 'google-github-actions/auth@v0'
+        with:
+          credentials_json: '${{ secrets.GCS_SNPE_LIBS_READ }}'
+    
+      - name: 'Set up Cloud SDK'
+        uses: 'google-github-actions/setup-gcloud@v0'
+
+      - name: 'Use gcloud CLI'
+        run: 'gcloud info'
+
+       
+      - name: 'build Docker image'
+        run: "cd TensorFlow2.5 && docker build -t TF2.5-build ."
+        
+ 
