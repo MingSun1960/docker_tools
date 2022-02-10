@@ -1,4 +1,4 @@
-name: Test GCP
+name: SNPE Docker build and push to gcr.io
 on:
   workflow_dispatch:
     # Inputs the workflow accepts
