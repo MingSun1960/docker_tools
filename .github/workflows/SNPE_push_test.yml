@@ -12,7 +12,27 @@ jobs:
   build:
 
     runs-on: ubuntu-latest
-
+      
     steps:
-    - name: List all environment
-      run: env 
+      - name: Checkout Repository
+        uses: actions/checkout@v2
+        
+      - name: Set GCS Security Token
+        uses: 'google-github-actions/auth@v0'
+        with:
+          credentials_json: '${{ secrets.GCS_SNPE_LIBS_READ }}'
+    
+      - name: 'Set up Cloud SDK'
+        uses: 'google-github-actions/setup-gcloud@v0'
+
+      - name: 'Use gcloud CLI'
+        run: 'gcloud info'
+
+      - name: 'Get snpe-1.41-0.zip file for test build'
+        run: "cd SNPE-Android-SDK-NDK && gsutil cp gs://snpe-libs-for-docker/snpe-1.41.0.zip snpe-lib.zip"
+        
+       
+      - name: 'build Docker image'
+        run: "cd SNPE-Android-SDK-NDK && docker build -t snpe-build ."
+        
+ 
