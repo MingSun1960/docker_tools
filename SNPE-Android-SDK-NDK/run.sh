@@ -22,5 +22,5 @@ mkdir -p studio-data/profile/AndroidStudio4.2.1.0
 mkdir -p studio-data/profile/android
 mkdir -p studio-data/profile/gradle
 mkdir -p studio-data/profile/java
-docker run ${AOSP_ARGS} -v "$(pwd)/studio-data:/studio-data" --privileged --group-add plugdev snpe-build-003 $@  
+docker run ${AOSP_ARGS} -v "$(pwd)/studio-data:/studio-data" --privileged --group-add plugdev snpe-build-003 $@ 
 
