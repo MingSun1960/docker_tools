@@ -39,7 +39,7 @@ jobs:
       run: echo "Hello ${{ env.snpever_string }}"
       
     - name: Set to use SNPE 1.53
-      if: ${{ github.event.inputs.snpeversion == 1}}
+      if: ${{ github.event.inputs.snpeversion == 2}}
       env: 
         snpever_string: snpe-1.53.0.zip
         
