@@ -123,6 +123,8 @@ RUN ls -d snpe*/ | xargs -I '{}' mv {} SNPE-LIB
 
 #RUN /bin/bash -c 'source /home/$USER/SNPE-LIB/bin/envsetup.sh -t /usr/local/lib/python3.6/dist-packages/'
 
+#Add integration test script
+COPY snpe-entrypoint-test.sh snpe-entrypoint-test.sh
 
 WORKDIR /home/$USER
 

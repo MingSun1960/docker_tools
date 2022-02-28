@@ -1,14 +1,14 @@
 #####################################################################################################
 # To build the docker image tensorflow2.5-build-002 from Dockerfile located in the current folder
 #####################################################################################################
-$docker build -t tensorflow2.5-build-002 .
+$docker build -t tf2.5-build:latest .
 
 
 #####################################################################################################
 # Run tensorflow2.5-build-002 image as a docker container named <contanername>, expose port 8888 for 
 # jupyter notebook
 #####################################################################################################
-$docker run --gpus all -p 8888 --name <containername> tensorflow2.5-build-002 &
+$docker run --gpus all -p 8888 --name mytf2.5 tf2.5-build &
 
 #####################################################################################################
 # Inspect the running status of container and find out port forwarding information
@@ -16,13 +16,13 @@ $docker run --gpus all -p 8888 --name <containername> tensorflow2.5-build-002 &
 $docker ps
 
 CONTAINER ID   IMAGE                     COMMAND                    CREATED       STATUS       PORTS                                         NAMES
-9da886eb3d55   tensorflow2.5-build-002   "jupyter notebook --..."   2 hours ago   Up 2 hours   0.0.0.0:49157->8888/tcp, :::49157->8888/tcp   <containername>
+9da886eb3d55   tf2.5-build   "jupyter notebook --..."   2 hours ago   Up 2 hours   0.0.0.0:49157->8888/tcp, :::49157->8888/tcp   mytf2.5
 
 
 #####################################################################################################
 # Attach to the running Docker container <containername>
 #####################################################################################################
-$docker exec -it <containername> bash
+$docker exec -it mytf2.5 bash
 ett@9da886eb3d55:~$
 
 

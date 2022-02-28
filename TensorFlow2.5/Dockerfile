@@ -21,9 +21,13 @@ RUN adduser --disabled-password --gecos '' ett
 RUN adduser ett sudo
 RUN echo '%sudo ALL=(ALL) NOPASSWD:ALL' >> /etc/sudoers
 
+
 USER ett
 WORKDIR /home/ett/
 RUN chmod a+rwx /home/ett/
+
+# Add script file for integration test
+COPY tf_entrypoint_test.sh tf_entrypoint_test.sh
 
 # install python3-venv and python3-dev
 RUN sudo apt-get install python3-venv python3-dev -y

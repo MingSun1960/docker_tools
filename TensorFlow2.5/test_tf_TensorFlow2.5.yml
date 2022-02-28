@@ -1,0 +1,13 @@
+# test_tf_TensorFlow2.5.yml
+name: 'Test TF Components'
+description: 'Validate the components installed in Dockefile image for TF2.5, conda and jupyter'
+outputs:
+  result: # result from running startup script when no arguments passed
+    description: 'The result from validating the compoments'
+runs:
+  using: 'docker'
+  image: 'Dockerfile'
+  args:  
+  	- 'it'
+  entrypoint:  '~/tf_entrypoint_test.sh'
+  

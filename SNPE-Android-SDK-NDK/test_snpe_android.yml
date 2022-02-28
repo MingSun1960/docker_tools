@@ -1,0 +1,12 @@
+# test_snpe_android.yml
+name: 'Test SNPE/Android Components'
+description: 'Validate the components installed in Dockefile image for SNPE and Android'
+outputs:
+  result: # result from running startup script when no arguments passed
+    description: 'The result from validating the compoments'
+runs:
+  using: 'docker'
+  image: 'Dockerfile'
+  args:  
+  	- 'it'
+  entrypoint:  '~/snpe_entrypoint_test.sh'
